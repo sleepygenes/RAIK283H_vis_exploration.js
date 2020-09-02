@@ -31,18 +31,51 @@
   <script type="text/javascript">
     // create an array with nodes
     var nodes = new vis.DataSet([{
-      id: 1,
-      label: 'Node 1',
+      id: 9,
+      label: 'Ariel',
     }, {
+      id: 8,
+      label: 'Alexis',
+    },{
+      id: 7,
+      label: 'Andy',
+    },{
+      id: 6,
+      label: 'Brysen',
+    },{
+      id: 5,
+      label: 'Gretl',
+    },{
+      id: 4,
+      label: 'Emily',
+    },{
+      id: 3,
+      label: 'Anna',
+    },{
       id: 2,
-      label: 'Node 2',
+      label: 'Nicole',
+    },{
+      id: 1,
+      label: 'Megan',
     }, ]);
 
     // create an array with edges
     var edges = new vis.DataSet([{
-      from: 1,
+      from: 9,
+      to: 8
+    }, {
+      from: 7,
+      to: 6
+    }, {
+      from: 5,
+      to: 4
+    }, {
+      from: 3,
       to: 2
-    }, ]);
+    }, {
+      from: 1,
+      to: 8
+    },]);
 
     // create a network
     var container = document.getElementById('mynetwork');
@@ -50,8 +83,35 @@
       nodes: nodes,
       edges: edges
     };
-    var options = {};
+    var options = {
+      nodes:{
+    borderWidth: 1,
+    borderWidthSelected: 2,
+    chosen: true,
+    color: {
+      border: '#000000',
+      background: '#FF0000',
+    },
+    shape: 'box',
+    
+  }}
     var network = new vis.Network(container, data, options);
+   // var nodeID = params['nodes']['0'];
+      var clickedNode = nodes.get(5);
+      clickedNode.color = {
+        border: 'yellow',
+        background: 'orange',
+        highlight: {
+          border: 'yellow',
+          background: 'orange'
+        }
+      }
+      nodes.update(clickedNode);
+    let someNodes = network.getConnectedNodes(5);
+    someNodes.forEach(currNode => {
+      console.log("node ID: " + currNode)
+    })
+
   </script>
 
 
